@@ -1,13 +1,13 @@
-# react-reducer-context
+# react-state-master
 
-[![npm](https://img.shields.io/npm/v/react-reducer-context)](https://www.npmjs.com/package/react-reducer-context)
-[![License](https://img.shields.io/npm/l/react-reducer-context)](LICENSE)
+[![npm](https://img.shields.io/npm/v/react-state-master)](https://www.npmjs.com/package/react-state-master)
+[![License](https://img.shields.io/npm/l/react-state-master)](LICENSE)
 
 A lightweight, type-safe solution to simplify state management in React using `Context` and `useReducer`. Reduce boilerplate and improve performance while leveraging React's built-in tools. Created by **Arun Jagadish**.
 
 ---
 
-## Why `react-reducer-context`?
+## Why `react-state-master`?
 
 Managing state in React often involves trade-offs between simplicity, performance, and scalability. While React's `useReducer` and `Context` are powerful, they require significant boilerplate and can cause unnecessary re-renders. This package solves those pain points by:
 
@@ -31,9 +31,9 @@ Managing state in React often involves trade-offs between simplicity, performanc
 ## Installation
 
 ```bash
-npm install react-reducer-context@0.1.0
+npm install react-state-master@0.1.0
 # or
-yarn add react-reducer-context@0.1.0
+yarn add react-state-master@0.1.0
 ```
 
 ## Basic Usage
@@ -42,7 +42,7 @@ yarn add react-reducer-context@0.1.0
 
 ```jsx
 // counter-context.ts
-import { createReducerContext } from "react-reducer-context";
+import { createReducerContext } from "react-state-master";
 
 type State = { count: number };
 type Action = { type: "increment" } | { type: "decrement" };
@@ -183,4 +183,4 @@ function App() {
 
 ### Contributing
 
-Contributions are welcome! Please open an issue or PR on _[Github](https://github.com/arunjagadishsd/react-reducer-context/issues)_
+Contributions are welcome! Please open an issue or PR on _[Github](https://github.com/arunjagadishsd/react-state-master/issues)_
