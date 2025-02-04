@@ -1,6 +1,7 @@
 import { useActionState } from 'react';
 import { createReducerContext } from '../core';
-
+// TODO: Doesn't add anything other than wraps the useActionState hook, remove this if not needed
+// TODO: Think about if we can add validation but with zod or yup user can do it themselves 
 export function createFormContext<State, Action, FormData>(
   reducer: (state: State, action: Action) => State,
   formAction: (prevState: State, formData: FormData) => Promise<Action>,

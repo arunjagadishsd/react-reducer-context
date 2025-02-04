@@ -8,14 +8,14 @@ type AsyncState<T> = {
 
 type AsyncAction<T> =
   | { type: 'START' }
-  | { type: 'SUCCESS'; payload: T }
-  | { type: 'ERROR'; payload: Error };
+  | { type: 'SUCCESS', payload: T }
+  | { type: 'ERROR', payload: Error };
 
 export function createAsyncContext<T>(fetcher: (...args: any[]) => Promise<T>) {
   const initialState: AsyncState<T> = {
     data: null,
     loading: false,
-    error: null,
+    error: null
   };
 
   const reducer = (state: AsyncState<T>, action: AsyncAction<T>): AsyncState<T> => {
@@ -37,7 +37,7 @@ export function createAsyncContext<T>(fetcher: (...args: any[]) => Promise<T>) {
   const useAsyncAction = () => {
     const dispatch = useDispatchContext();
 
-    const fetchData = async (...args: any[]) => {
+    const execute = async (...args: any[]) => {
       try {
         dispatch({ type: 'START' });
         const data = await fetcher(...args);
@@ -47,7 +47,7 @@ export function createAsyncContext<T>(fetcher: (...args: any[]) => Promise<T>) {
       }
     };
 
-    return fetchData;
+    return execute;
   };
 
   return { Provider, useStateContext, useAsyncAction };

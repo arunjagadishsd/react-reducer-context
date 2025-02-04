@@ -3,11 +3,11 @@ import React, {
   useContext,
   useReducer,
   ReactNode,
-  Dispatch,
+  Dispatch
 } from 'react';
 
 export function createReducerContext<State, Action>(
-  reducer: React.Reducer<State, Action>,
+  reducer: (state: State, action: Action) => State,
   initialState: State
 ) {
   const StateContext = createContext<State | undefined>(undefined);
@@ -27,17 +27,13 @@ export function createReducerContext<State, Action>(
 
   const useStateContext = () => {
     const state = useContext(StateContext);
-    if (state === undefined) {
-      throw new Error('useStateContext must be used within a Provider');
-    }
+    if (!state) throw new Error('Missing Provider');
     return state;
   };
 
   const useDispatchContext = () => {
     const dispatch = useContext(DispatchContext);
-    if (dispatch === undefined) {
-      throw new Error('useDispatchContext must be used within a Provider');
-    }
+    if (!dispatch) throw new Error('Missing Provider');
     return dispatch;
   };
 
