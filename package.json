@@ -1,10 +1,13 @@
 {
-  "name": "react-reducer-context",
-  "version": "0.1.0",
+  "name": "react-state-master",
+  "version": "0.1.1-beta",
   "description": "A simple way to use React context with reducer",
   "author": "Arun Jagadish",
   "license": "MIT",
-  "repository": "https://github.com/arunjagadishsd/react-reducer-context",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arunjagadishsd/react-state-kit.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
