@@ -40,17 +40,18 @@ yarn add react-reducer-context@0.1.0
 
 ### Step 1: Define Your Reducer and State
 
-```// counter-context.ts
-import { createReducerContext } from 'react-reducer-context';
+```jsx
+// counter-context.ts
+import { createReducerContext } from "react-reducer-context";
 
 type State = { count: number };
-type Action = { type: 'increment' } | { type: 'decrement' };
+type Action = { type: "increment" } | { type: "decrement" };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'increment':
+    case "increment":
       return { count: state.count + 1 };
-    case 'decrement':
+    case "decrement":
       return { count: state.count - 1 };
     default:
       return state;
@@ -63,9 +64,9 @@ export const { Provider, useStateContext, useDispatchContext } =
 
 ### Step 2: Wrap Your App with the Provider
 
-```
+```jsx
 // App.tsx
-import { Provider } from './counter-context';
+import { Provider } from "./counter-context";
 
 function App() {
   return (
@@ -78,9 +79,9 @@ function App() {
 
 ### Step 3: Use the State and Dispatch in Your Components
 
-```
+```jsx
 // Counter.tsx
-import { useStateContext, useDispatchContext } from './counter-context';
+import { useStateContext, useDispatchContext } from "./counter-context";
 
 function Counter() {
   const state = useStateContext();
@@ -88,9 +89,9 @@ function Counter() {
 
   return (
     <div>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
       <span>{state.count}</span>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
     </div>
   );
 }
@@ -102,9 +103,9 @@ function Counter() {
 
 ### Method 1: Manual Nesting (Simple Apps)
 
-```
-import { Provider as UserProvider } from './user-context';
-import { Provider as CartProvider } from './cart-context';
+```jsx
+import { Provider as UserProvider } from "./user-context";
+import { Provider as CartProvider } from "./cart-context";
 
 function App() {
   return (
@@ -121,9 +122,9 @@ function App() {
 
 #### Create a utility file:
 
-```
+```jsx
 // utils/combined-provider.tsx
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement } from "react";
 
 type Provider = FC<{ children: ReactElement }>;
 
@@ -131,12 +132,14 @@ export const CombinedProvider = ({
   providers,
   children,
 }: {
-  providers: Provider[];
-  children: ReactElement;
+  providers: Provider[],
+  children: ReactElement,
 }) => (
   <>
     {providers.reduceRight(
-      (acc, Provider) => <Provider>{acc}</Provider>,
+      (acc, Provider) => (
+        <Provider>{acc}</Provider>
+      ),
       children
     )}
   </>
@@ -145,11 +148,11 @@ export const CombinedProvider = ({
 
 #### Use in your app:
 
-```
+```jsx
 // App.tsx
-import { CombinedProvider } from './utils/combined-provider';
-import { Provider as UserProvider } from './user-context';
-import { Provider as CartProvider } from './cart-context';
+import { CombinedProvider } from "./utils/combined-provider";
+import { Provider as UserProvider } from "./user-context";
+import { Provider as CartProvider } from "./cart-context";
 
 function App() {
   return (
